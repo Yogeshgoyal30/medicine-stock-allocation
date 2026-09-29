@@ -1,0 +1,15 @@
+# Medicine list - one medicine per line
+# format: ID|Name|Stock
+# stock is how many pieces are left. change it here to restock.
+101|Paracetamol 500mg|50
+102|Amoxicillin 250mg|39
+103|Ibuprofen 400mg|39
+104|Cetirizine 10mg|39
+105|Azithromycin 500mg|29
+106|Metformin 500mg|39
+107|Omeprazole 20mg|39
+108|Pantoprazole 40mg|40
+109|ORS Sachet|60
+110|Cough Syrup 100ml|25
+111|Vitamin C 500mg|60
+112|Insulin Pen|15
