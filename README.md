@@ -1,84 +1,160 @@
-# Pharmacy Management System
+# Medicine Stock Allocation and Pharmacy Management System
 
-A small command-line program in Python for a hospital pharmacy. You enter your patient ID, see what medicines are in stock, ask for as many pieces as you need, and look back at what you've been given before. Everything is saved in text files, so nothing is lost when you close it.
+## Project Overview
 
-## What it can do
+The Medicine Stock Allocation and Pharmacy Management System is a simple Python-based command-line application designed to manage medicine stock and allocate medicines to patients.
 
-- Asks for your patient ID when it starts (like `P101`)
-- Shows the medicines that are in stock, with how many pieces are left
-- Lets you request a medicine by its ID and pick how many pieces you want
-- Says "out of stock" when a medicine has run out, and tells you how many are left if you ask for too many
-- Shows the total pieces of each medicine you've been given
-- Shows your full history with the date and time
-- Makes `medicines.txt` and `history.txt` by itself the first time you run it
+The main idea behind the project is to make basic pharmacy stock management easier. Instead of maintaining everything manually, the system keeps track of available medicines, updates stock when a medicine is issued, and maintains a record of each patient's medicine history.
 
-## Files
+## Problem Statement
 
+In a pharmacy, keeping track of medicine stock manually can become difficult. Staff may need to check how many medicines are available, make sure that a requested quantity is actually in stock, and maintain records of medicines given to different patients.
+
+This project provides a simple digital solution for these tasks using Python and file-based storage.
+
+## Objectives
+
+* To manage medicine stock digitally.
+* To allocate available medicines to patients.
+* To prevent issuing more medicine than the available stock.
+* To maintain a record of medicines issued to patients.
+* To provide a simple and easy-to-use interface.
+* To demonstrate the practical use of Python classes, functions, file handling and validation.
+
+## Features
+
+* Patient ID input
+* Display available medicines
+* Request medicines by medicine ID
+* Quantity validation
+* Out-of-stock checking
+* Automatic stock reduction
+* View medicines received by a patient
+* View patient medicine history
+* Automatic creation of medicine and history files
+* Persistent storage using text files
+
+## Functional Modules
+
+### 1. Medicine Stock Management
+
+The system reads medicine information from `medicines.txt` and displays medicines that are currently available.
+
+### 2. Medicine Allocation
+
+A patient can request a medicine by entering its ID and the required quantity. The system checks whether the requested quantity is available before issuing it.
+
+### 3. Patient History
+
+The system stores each successful medicine issue with the patient ID, medicine ID, medicine name, quantity and time. Patients can later view their medicine history.
+
+## Technologies Used
+
+* Python 3
+* Python Classes and Objects
+* Functions
+* File Handling
+* Text File Storage
+* Git and GitHub
+
+## Project Structure
+
+```text
+medicine-stock-allocation/
+│
+├── main.py
+├── pharmacy.py
+├── patient.py
+├── storage.py
+├── medicines.txt
+├── history.txt
+├── README.md
+└── statement.md
 ```
-pharmacy_system/
-├── main.py         # the menu and user input
-├── pharmacy.py     # Pharmacy class - stock and issuing medicines
-├── patient.py      # Patient class - request, view medicines, view history
-├── storage.py      # reads and writes the text files
-├── medicines.txt   # medicine list with stock
-└── history.txt     # record of everything issued
+
+### File Description
+
+* `main.py` - Starts the application and handles the main menu.
+* `pharmacy.py` - Handles medicine stock and medicine allocation.
+* `patient.py` - Handles patient-related operations.
+* `storage.py` - Reads and writes medicine and history data.
+* `medicines.txt` - Stores medicine IDs, names and stock quantities.
+* `history.txt` - Stores records of medicines issued.
+* `statement.md` - Contains the project problem statement, scope and features.
+
+## How to Run
+
+### Step 1: Install Python
+
+Make sure Python 3 is installed on your computer.
+
+### Step 2: Download or clone the repository
+
+```bash
+git clone https://github.com/Yogeshgoyal30/medicine-stock-allocation.git
 ```
 
-## How to run
+### Step 3: Open the project folder
 
-You need Python 3.6 or newer. Nothing else to install.
-
+```bash
+cd medicine-stock-allocation
 ```
+
+### Step 4: Run the program
+
+```bash
 python main.py
 ```
 
-On Mac/Linux use `python3 main.py`.
+No external Python libraries are required.
 
-## The menu
+## How the System Works
 
-```
-===== PHARMACY MENU =====
-1. Display available medicines
-2. Request a medicine
-3. View my medicines
-4. View my medicine history
-5. Exit
-```
+1. The program starts and asks for a patient ID.
+2. The patient can view the available medicines.
+3. The patient selects a medicine using its ID.
+4. The requested quantity is checked against the available stock.
+5. If enough stock is available, the medicine is issued.
+6. The stock quantity is automatically reduced.
+7. The transaction is saved in the history file.
+8. The patient can view their medicines and previous medicine history.
 
-Example:
+## Testing
 
-```
-Enter choice: 2
-Enter medicine ID to request: 105
-How many pieces do you want? 5
-5 x Azithromycin 500mg issued to P101 (24 left)
-```
+The system was tested using different input situations, including:
 
-## The text files
+* Valid patient ID
+* Empty patient ID
+* Valid medicine ID
+* Invalid medicine ID
+* Valid quantity
+* Quantity greater than available stock
+* Zero or invalid quantity
+* Out-of-stock medicine
+* Viewing history when no records are available
+* Viewing history after successfully requesting a medicine
 
-**medicines.txt** - one medicine per line: `ID|Name|Stock`
+The system displays suitable messages for invalid inputs instead of stopping unexpectedly.
 
-```
-105|Azithromycin 500mg|30
-```
+## Limitations
 
-**history.txt** - one issue per line: `Time|PatientID|MedicineID|MedicineName|Quantity`
+The current version is a command-line application and uses text files instead of a database. It does not include a separate pharmacist login or a graphical user interface.
 
-```
-2026-09-29 18:26:09|P101|105|Azithromycin 500mg|5
-```
+## Future Enhancements
 
-Lines starting with `#` are comments and the program ignores them. Don't put a `|` inside a name, because that's what the program splits each line on.
+Some improvements that can be added in the future are:
 
-## Changing things
+* Pharmacist/admin login
+* Add and remove medicines through the application
+* Restocking through the application
+* Search medicines by name
+* Medicine return functionality
+* SQLite or another database for storage
+* Graphical user interface
+* Better reporting and analytics
 
-- **Add a medicine:** add a new line to `medicines.txt` with a new ID and a stock number
-- **Restock:** change the stock number in `medicines.txt`
-- **Different starting stock:** edit `DEFAULT_MEDICINES` in `storage.py` (only used if `medicines.txt` is missing)
+## Conclusion
 
-## Ideas for later
+This project demonstrates how basic Python programming concepts can be used to solve a practical inventory management problem. It combines classes, functions, file handling, validation and data processing to create a simple medicine allocation system.
 
-- A pharmacist menu to restock and add or remove medicines
-- A way to return a medicine
-- Search by medicine name
-- Use SQLite instead of text files
+The project can also be extended further into a larger pharmacy management application by adding a database, user roles and a graphical interface.
